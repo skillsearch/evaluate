@@ -5,5 +5,6 @@ An application for identifying skills in I.T. job candidates
 -
 -
 - John
-- Andrey
+- Andrey 2
+
 # evaluate
