@@ -35,3 +35,48 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+#
+# The settings above come from the original empty repo created on GitHub (apparently initialized for JavaScript/Node project?)
+# This Angular project was created by angular-cli 1.0.0-beta.25.5 in an existing GitHub repo with command >ng init --name evaluate --skip-git
+# The following settings were copied over from the .gitignore file created in another folder with command >ng init --name <somename>
+#
+
+# compiled output
+/dist
+/tmp
+
+# dependencies
+/node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+
+# IDE - VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
+Thumbs.db
