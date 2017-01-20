@@ -1,7 +1,6 @@
 An application for identifying skills in I.T. job candidates
 ### Members
--
--
+- Natasha
 - Vlad
 - John
 - Andrey
