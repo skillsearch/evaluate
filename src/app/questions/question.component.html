@@ -1,5 +1,5 @@
 <ul class="questions">
-    <li *ngFor="let obj of questions | slice:0:10" [title]="question | json">
-        <span class="name">{{ obj.question | uppercase }}</span> 
+    <li *ngFor="let obj of questions | slice:0:10" [title]="obj | json">
+        <span class="question">{{ obj.question | uppercase }}</span> 
     </li>
 </ul>
