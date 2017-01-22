@@ -17,6 +17,11 @@ app.get('/api/getdata',function(req, res) {
     ]);
 });
 
+app.get("/api/questions", (req, res) => {
+    const questions = require("./questions.json").questions;  
+    res.send(questions);  
+});
+
 app.listen(port, function(err){
     if (!err) {
         // open('http://localhost:' + port);
