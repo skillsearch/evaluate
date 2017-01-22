@@ -1,13 +1,8 @@
 var express = require('express');
 var path = require('path');
-var open = require('open');
 
 var port = 3000;
 var app = express();
-
-app.get('/', function(req, res){
-    res.sendFile(path.join(__dirname, '../dist/index.html'));
-});
 
 app.get('/api/getdata',function(req, res) {
     res.json([
@@ -24,7 +19,6 @@ app.get("/api/questions", (req, res) => {
 
 app.listen(port, function(err){
     if (!err) {
-        // open('http://localhost:' + port);
         console.log('Express is running...');
     } else {
         console.log(err);
