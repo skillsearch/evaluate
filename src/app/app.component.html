@@ -1,3 +1,10 @@
-<h1>
+<h2>
   {{title}}
-</h1>
+</h2>
+
+<nav>
+    <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
+    <a [routerLink]="['/questions']" routerLinkActive="active">Questionaire</a>
+</nav>
+
+<router-outlet></router-outlet>
