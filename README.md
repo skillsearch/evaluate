@@ -7,6 +7,15 @@ An application for identifying skills in I.T. job candidates
 
 # Evaluate
 
+---
+
+## NOTES
+
+* 2017-01-25 Andrey. The "start" npm command is renamed to "start-dev" because "start" is used by Heroku. 
+    To run the app in the dev mode execute "npm run runall".
+
+---
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.25.5.
 
 ## Development server
