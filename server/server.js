@@ -1,10 +1,12 @@
 var express = require('express');
+const bodyParser = require('body-parser')
 var compression = require('compression');
 var path = require('path');
 
 var port = process.env.PORT || 3000;
 var app = express();
 
+app.use(bodyParser.json());
 app.use(compression());
 app.use(express.static('dist'));
 
@@ -18,6 +20,16 @@ app.get('/api/testdata',function(req, res) {
 app.get("/api/questions", (req, res) => {
     const questions = require("./questions.json").questions;  
     res.send(questions);  
+});
+
+app.post("/api/invite", (req, res) => {
+    console.log("invite api", req.body);
+
+    const { recruiterEmail, candidateEmail } = req.body;
+    const invitationHash = new Buffer(`${recruiterEmail}/${candidateEmail}`).toString("base64");
+
+    //console.log(new Buffer(invitationHash, 'base64').toString("ascii"));
+    res.send(invitationHash);
 });
 
 // For all GET requests, send back index.html so that Angular's PathLocationStrategy can be used.

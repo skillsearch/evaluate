@@ -22,7 +22,7 @@
     display: inline-block;
     font-size: small;
     color: white;
-    padding: 0.8em 0.7em 0em 0.7em;
+    padding: 0.4em 0.7em 0em 0.7em;
     background-color: #657491;
     line-height: 1em;
     position: relative;
@@ -30,6 +30,6 @@
     top: -4px;
     height: 1.8em;
     margin-right: .8em;
-    border-radius: 4px 0px 0px 4px;
-    width: 98%;
+    border-radius: 4px;
+    width: 100%;
   }

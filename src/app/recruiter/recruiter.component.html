@@ -1,0 +1,18 @@
+<h2>{{title}}</h2>
+<form [formGroup]="inviteForm" (ngSubmit)="onInvite()">
+    <label for="recruiterEmail">Recruiter Email:</label>
+    <input
+        id="recruiterEmail" 
+        type="text" formControlName="recruiterEmail">
+    <br />
+    
+    <label for="candidateEmail">Candidate Email:</label>
+    <input
+        id="candidateEmail"
+        type="text" formControlName="candidateEmail">
+    <br />
+    <button type="submit">Invite</button>
+</form>
+<div  *ngIf="invitationHash">
+    Invitation Hash: {{invitationHash}}
+</div>
