@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { IQuestion } from './question.interface';
+import { Question } from './question.interface';
 import { QuestionService } from './question.service';
 
 @Component({
@@ -13,12 +13,12 @@ import { QuestionService } from './question.service';
 })
 export class QuestionComponent implements OnInit {
 
-    questions:IQuestion[];
+    questions:Question[];
 
-    constructor(private _questionService: QuestionService, private _http: Http) { }
+    constructor(private questionService: QuestionService, private http: Http) { }
 
     ngOnInit() { 
-        this._questionService.getQuestions()
+        this.questionService.getQuestions()
                 .subscribe(
                     data => { this.questions = data; console.log(data); },
                     error => console.log(error)

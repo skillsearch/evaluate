@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { IQuestion } from './question.interface';
+import { Question } from './question.interface';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
@@ -8,13 +8,13 @@ import 'rxjs/Rx';
 @Injectable()
 export class QuestionService {
 
-    questions: IQuestion[];
+    questions: Question[];
     private apiEndPoint: string = "http://localhost:4200/api/questions";
 
-    constructor(private _http:Http) { }
+    constructor(private http:Http) { }
 
-    getQuestions():Observable<IQuestion[]>{
-        return this._http.get(this.apiEndPoint)
+    getQuestions():Observable<Question[]>{
+        return this.http.get(this.apiEndPoint)
                     .map(data=>this.extractData(data))
                     .catch(error=>this.handleError(error));
     }

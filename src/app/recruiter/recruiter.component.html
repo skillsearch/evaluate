@@ -1,18 +1,21 @@
-<h2>{{title}}</h2>
-<form [formGroup]="inviteForm" (ngSubmit)="onInvite()">
-    <label for="recruiterEmail">Recruiter Email:</label>
-    <input
-        id="recruiterEmail" 
-        type="text" formControlName="recruiterEmail">
-    <br />
-    
-    <label for="candidateEmail">Candidate Email:</label>
-    <input
-        id="candidateEmail"
-        type="text" formControlName="candidateEmail">
-    <br />
-    <button type="submit">Invite</button>
-</form>
-<div  *ngIf="invitationHash">
-    Invitation Hash: {{invitationHash}}
+ <h3>{{title}}</h3>
+ <div class="jumbotron">   
+    <form [formGroup]="inviteForm" (ngSubmit)="onInvite(inviteForm.value)">
+      <div class="form-group" [ngClass]="{'has-error':!inviteForm.controls['recruiterEmail'].valid && inviteForm.controls['recruiterEmail'].touched}">
+        <label for="recruiterEmail">Recruiter Email:</label>
+        <input class="form-control" type="text" placeholder="john@email.com" formControlName="recruiterEmail">
+        <div *ngIf="inviteForm.controls['recruiterEmail'].hasError('required') && inviteForm.controls['recruiterEmail'].touched" class="alert alert-danger">Recruiter Email field is required.</div>
+        <div *ngIf="inviteForm.controls['recruiterEmail'].touched &&inviteForm.controls['candidateEmail'].hasError('incorrectMailFormat')">Recruiter Email address must be valid.</div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error':!inviteForm.get('candidateEmail').valid}">
+        <label for="candidateEmail">Candidate Email:</label>
+        <input class="form-control" type="text" placeholder="doe@email.com" formControlName="candidateEmail">
+        <div *ngIf="inviteForm.controls['candidateEmail'].hasError('required') && inviteForm.controls['candidateEmail'].touched" class="alert alert-danger">Candidate Email field is required.</div>        
+        <div *ngIf="inviteForm.controls['candidateEmail'].touched && inviteForm.controls['candidateEmail'].hasError('incorrectMailFormat')">Candidate Email address must be valid</div>
+      </div>
+      <button type="submit" [disabled]="!inviteForm.valid">Invite</button>
+    </form>
+</div>
+<div  *ngIf="base64Emails">
+    Invitation Code: {{base64Emails}}
 </div>

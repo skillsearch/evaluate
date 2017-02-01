@@ -26,10 +26,10 @@ app.post("/api/invite", (req, res) => {
     console.log("invite api", req.body);
 
     const { recruiterEmail, candidateEmail } = req.body;
-    const invitationHash = new Buffer(`${recruiterEmail}/${candidateEmail}`).toString("base64");
+    const base64Emails = new Buffer(`${recruiterEmail}/${candidateEmail}`).toString("base64");
 
-    //console.log(new Buffer(invitationHash, 'base64').toString("ascii"));
-    res.send(invitationHash);
+    //console.log(new Buffer(base64Emails, 'base64').toString("ascii"));
+    res.send(base64Emails);
 });
 
 // For all GET requests, send back index.html so that Angular's PathLocationStrategy can be used.

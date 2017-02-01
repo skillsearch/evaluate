@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecruiterService } from './recruiter.service';
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
+import { emailValidator } from './email.validator';
 
 @Component({
     selector: 'recruiter',
@@ -13,32 +14,32 @@ export class RecruiterComponent implements OnInit {
     inviteForm: FormGroup;
     recruiterEmail:FormControl;
     candidateEmail:FormControl;
-    invitationHash: string = null;
+    base64Emails: string = null;
 
-    constructor(private _fb:FormBuilder, private _recruiterService: RecruiterService, private _router:Router) { }
+    constructor(private fb:FormBuilder, private recruiterService: RecruiterService, private router:Router) { }
 
     ngOnInit() { 
-        this.recruiterEmail = new FormControl('', [Validators.minLength(3), Validators.maxLength(50), Validators.required]);
-        this.candidateEmail = new FormControl('', [Validators.minLength(3), Validators.maxLength(50), Validators.required]);
-        this.inviteForm = this._fb.group({
+        this.recruiterEmail = new FormControl(null, [Validators.required]);
+        this.candidateEmail = new FormControl(null, [Validators.compose([Validators.required])]);
+        this.inviteForm = this.fb.group({
             'recruiterEmail':this.recruiterEmail,
             'candidateEmail': this.candidateEmail
-        });
+        }, { validator: emailValidator });
     }
 
-    onInvite() {
-        console.log(this.inviteForm.value);
-        this.invitationHash = null;
-        this._recruiterService.inviteCandidate(this.inviteForm.value)
+    onInvite(inviteFormValue: any):void {
+        console.log(inviteFormValue);
+        this.base64Emails = null;
+        this.recruiterService.inviteCandidate(inviteFormValue)
             .subscribe(
                 data => {
                             console.log('Candidate Email Sent'); //success
                             console.log(data);
-                            this.invitationHash = data;                           
+                            this.base64Emails = data;                           
                         },
                 err => console.log(err), //catch
                 () => console.log('Candidate Email Post Complete')//finally
             );
-        //this._router.navigateByUrl('/home');
+        //this.router.navigateByUrl('/home');
     } 
 }
