@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class RecruiterService {
 
-    private apiEndPoint: string = "http://localhost:4200/api/invite";
+    private apiEndPoint: string = "/api/invite";
     invitationHash:string;
 
     constructor(private http: Http) { }
