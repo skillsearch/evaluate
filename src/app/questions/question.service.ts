@@ -9,7 +9,7 @@ import 'rxjs/Rx';
 export class QuestionService {
 
     questions: Question[];
-    private apiEndPoint: string = "http://localhost:4200/api/questions";
+    private apiEndPoint: string = "/api/questions";
 
     constructor(private http:Http) { }
 
