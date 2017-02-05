@@ -17,8 +17,21 @@ app.get('/api/testdata',function(req, res) {
     ]);
 });
 
-app.get("/api/questions", (req, res) => {
-    const questions = require("./questions.json").questions;  
+app.get("/api/questions", (req, res) => {	
+    const questions = require("./questions.json").questions;	
+	var questionTypes = ["js", "sql", "general"];	
+	
+	// hide correct answer
+	for (var i = 0; i  < questionTypes.length; i++){		
+
+		for(var j = 0; j < questions[questionTypes[i]].length; j++ ){
+			
+			questions[questionTypes[i]][j].correctAnswer = null;
+			
+		}
+		
+	}
+	
     res.send(questions);  
 });
 
