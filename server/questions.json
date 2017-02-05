@@ -1,12 +1,70 @@
 {
-    "message": "Hello World",
-    "questions":[{
-            "question": "Question 1",
-            "answer": "Answer 1"
-        },
-        {
-            "question": "Question 2",
-            "answer": "Answer 2"
-        }
-    ]
+	"message": "Hello World",
+	"questions": {
+		"js": [{
+			"questionText": "What will the following output?",
+			"codeSnippet": "console.log(typeof null)",
+			"correctAnswer": "object",
+			"possibleAnswers": ["undefined", "object", "null", "function"]
+		}, {
+			"questionText": "Select the correct output of the console.log below.",
+			"codeSnippet": "console.log(2 + 3 * (\"2\" + 5))",
+			"correctAnswer": 77,
+			"possibleAnswers": ["Error", 23, "NaN", 77]
+		}, {
+			"questionText": "How will the string \"a012a\" be parsed?",
+			"codeSnippet": "console.log(parseInt(\"a012a\",10))",
+			"correctAnswer": "NaN",
+			"possibleAnswers": [0, "NaN", 12, 3]
+		}],
+		"sql": [
+
+			{
+				"questionText": "Which is NOT a DDL command?",
+				"codeSnippet": null,
+				"correctAnswer": "select",
+				"possibleAnswers": ["create", "alter", "select", "drop"]
+			}, {
+				"questionText": "What rows are removed if a delete statement does NOT have a WHERE clause?",
+				"codeSnippet": null,
+				"correctAnswer": "All rows.",
+				"possibleAnswers": ["None - this will be an error.", "All rows.", "The delete statement will be ignored.", "None of the above."]
+			}, {
+				"questionText": "What is the difference between a VARCHAR2 and CHAR?",
+				"codeSnippet": null,
+				"correctAnswer": "VARCHAR2 allows variable length data and CHAR is fixed length.",
+				"possibleAnswers": [
+					"VARCHAR2 allows variable length data and CHAR is fixed length.",
+					"VARCHAR2 allows is for strings and CHAR is used for any single character.",
+					"CHAR allows variable length data and VARCHAR2 is fixed length.",
+					"All of the above."
+				]
+			}
+
+		],
+		"general": [{
+				"questionText": "Which CSS property controls underline and strikethrough?",
+				"codeSnippet": null,
+				"correctAnswer": "text-tecoration",
+				"possibleAnswers": ["text-tecoration", "border", "font-style", ":before"]
+			}, {
+				"questionText": "Which of the following is NOT an HTML5 tag?",
+				"codeSnippet": null,
+				"correctAnswer": "main",
+				"possibleAnswers": ["header", "article", "main", "nav"]
+			}, {
+				"questionText": "In ECMA6, what is 'let'?",
+				"codeSnippet": null,
+				"correctAnswer": "This creates a variable in block scope.",
+				"possibleAnswers": [
+					"Turns on ECMA5 compatibility",
+					"This creates a variable in block scope.",
+					"This creates a variable in function scope.",
+					"A special collection iterator."
+				]
+			}
+
+		]
+
+	}
 }
