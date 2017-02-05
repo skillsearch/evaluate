@@ -18,21 +18,31 @@ app.get('/api/testdata',function(req, res) {
 });
 
 app.get("/api/questions", (req, res) => {	
-    const questions = require("./questions.json").questions;	
-	var questionTypes = ["js", "sql", "general"];	
-	
-	// hide correct answer
-	for (var i = 0; i  < questionTypes.length; i++){		
 
-		for(var j = 0; j < questions[questionTypes[i]].length; j++ ){
+    const questionAnswerList = require("./questions.json").questionAnswerList;
+	
+	// future feature to filter by front end back end sql etc..
+	var filteredQuestionList = [];	
+
+	for (var i = 0; i < questionAnswerList.length; i++){	
+		
+		var questionAnswerItem = {
+			questionType : questionAnswerList[i].questionType, 
+			questionList : []
+		};				
+
+		for(var j = 0; j < questionAnswerList[i].questionList.length; j++ ){
 			
-			questions[questionTypes[i]][j].correctAnswer = null;
+			questionAnswerItem.questionList[j] = questionAnswerList[i].questionList[j];
+			delete questionAnswerItem.questionList[j].correctAnswer;
 			
 		}
 		
+		filteredQuestionList.push(questionAnswerItem);
+		
 	}
 	
-    res.send(questions);  
+    res.send(filteredQuestionList);  
 });
 
 app.post("/api/invite", (req, res) => {
