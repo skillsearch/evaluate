@@ -5,6 +5,9 @@ An application for identifying skills in I.T. job candidates
 - John
 - Andrey
 
+### Deployment
+https://skillevaluate.herokuapp.com
+
 # Evaluate
 
 ---
