@@ -1,27 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
+import { ActivatedRoute } from '@angular/router';
 
-import { Question } from './question.interface';
+import { Question, QuestionGroup } from './question.interface';
 import { QuestionService } from './question.service';
 
 @Component({
-    selector: 'question',
     templateUrl: './question.component.html',
-    styleUrls: ['./question.component.css'],
-    providers:[ QuestionService ]
+    providers: [QuestionService]
 })
 export class QuestionComponent implements OnInit {
 
-    questions:Question[];
+    questionGroups: QuestionGroup[];
 
-    constructor(private questionService: QuestionService, private http: Http) { }
+    constructor(private questionService: QuestionService, private route: ActivatedRoute) { }
 
-    ngOnInit() { 
-        this.questionService.getQuestions()
-                .subscribe(
-                    data => { this.questions = data; console.log(data); },
-                    error => console.log(error)
-                ); 
-    }    
+    ngOnInit() {
+        let invitationCode = this.route.snapshot.params['invitationCode'];
+
+        this.questionService.getQuestions(invitationCode)
+            .subscribe(
+            data => {
+                this.questionGroups = data;
+                console.log(data);
+            },
+            error => console.log(error)
+            );
+    }
 }

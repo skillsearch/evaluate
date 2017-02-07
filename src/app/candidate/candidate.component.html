@@ -1,0 +1,13 @@
+<form autocomplete="off" novalidate [formGroup]="invitationCodeForm" (ngSubmit)="goToQuestions(invitationCodeForm.value)">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group" [ngClass]="{ 'error' : !validateInvitationCode() }">
+        <label for="invitationCode">Enter the Invitation Code:</label>
+        <em *ngIf="!validateInvitationCode() && invitationCodeForm.controls.invitationCode.errors.required">Required</em>
+        <em *ngIf="!validateInvitationCode() && invitationCodeForm.controls.invitationCode.errors.pattern">Wrong characters</em>
+        <input id="invitationCode" type="text" formControlName="invitationCode" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Ok</button>
+</form>

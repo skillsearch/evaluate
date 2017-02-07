@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { QuestionComponent } from './question.component';
 
 const questionRoutes: Routes = [
-  { path: 'questions', component: QuestionComponent},
+  { path: 'questions/:invitationCode', component: QuestionComponent },
 ];
 
 export const questionRouting: ModuleWithProviders = RouterModule.forChild(questionRoutes);

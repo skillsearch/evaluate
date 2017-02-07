@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { emailValidator } from './email.validator';
 
 @Component({
-    selector: 'recruiter',
     templateUrl: './recruiter.component.html'
 })
 export class RecruiterComponent implements OnInit {

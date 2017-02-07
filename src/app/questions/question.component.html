@@ -1,5 +1,22 @@
-<ul class="questions">
-    <li *ngFor="let obj of questions | slice:0:10" [title]="obj | json">
-        <span class="question">{{ obj.question | uppercase }}</span> 
+<ul class="list-unstyled">
+    <li *ngFor="let questionGroup of questionGroups">
+        <h3 style="margin-top: 1em;">{{questionGroup.questionType | uppercase}}</h3>
+        <ul>
+            <li *ngFor="let question of questionGroup.questionList">
+                <hr/>
+                <div>{{question.questionText}}</div>
+                <div *ngIf="question.codeSnippet" style="margin: 1em;">
+                    <code>{{question.codeSnippet}}</code>
+                </div>
+                <ul class="list-unstyled">
+                    <li *ngFor="let possibleAnswer of question.possibleAnswers">
+                        <label>
+                                <input type="checkbox" value>
+                                &nbsp;&nbsp;{{possibleAnswer}}
+                            </label>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </li>
 </ul>
