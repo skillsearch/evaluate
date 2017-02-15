@@ -10,14 +10,16 @@ import { QuestionService } from './question.service';
 })
 export class QuestionComponent implements OnInit {
 
+    invitationCode: string;
     questionGroups: QuestionGroup[];
 
-    constructor(private questionService: QuestionService, private route: ActivatedRoute) { }
+    constructor(private questionService: QuestionService, private route: ActivatedRoute) {
+    }
 
     ngOnInit() {
-        let invitationCode = this.route.snapshot.params['invitationCode'];
+        this.invitationCode = this.route.snapshot.params['invitationCode'];
 
-        this.questionService.getQuestions(invitationCode)
+        this.questionService.getQuestions(this.invitationCode)
             .subscribe(
             data => {
                 this.questionGroups = data;
@@ -25,5 +27,9 @@ export class QuestionComponent implements OnInit {
             },
             error => console.log(error)
             );
+    }
+
+    submitAnswers() {
+        this.questionService.submitAnswers(this.invitationCode, this.questionGroups);
     }
 }

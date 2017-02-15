@@ -9,10 +9,10 @@
                     <code>{{question.codeSnippet}}</code>
                 </div>
                 <ul class="list-unstyled">
-                    <li *ngFor="let possibleAnswer of question.possibleAnswers">
+                    <li *ngFor="let answer of question.answers">
                         <label>
-                                <input type="checkbox" value>
-                                &nbsp;&nbsp;{{possibleAnswer}}
+                                <input type="checkbox" [(ngModel)]="answer.selected" >
+                                &nbsp;&nbsp;{{answer.answer}}
                             </label>
                     </li>
                 </ul>
@@ -20,3 +20,4 @@
         </ul>
     </li>
 </ul>
+<button class="btn btn-primary" (click)="submitAnswers()">Submit</button>

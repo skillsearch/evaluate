@@ -14,12 +14,12 @@ export const QuestionTypes: AllowedQuestionTypes = {
 @Injectable()
 export class QuestionService {
 
-    private apiEndPoint: string = "/api/questions";
+    private apiEndPoint = '/api';
 
     constructor(private http: Http) { }
 
     getQuestions(invitationCode: string): Observable<QuestionGroup[]> {
-        return this.http.get(this.apiEndPoint + '?invitationCode=' + invitationCode)
+        return this.http.get(this.apiEndPoint + '/questions?invitationCode=' + invitationCode)
             .map(data => this.extractData(data))
             .catch(error => this.handleError(error));
     }
@@ -29,12 +29,37 @@ export class QuestionService {
         if (response.status < 200 || response.status >= 300) {
             throw new Error('Bad response status: ' + response.status);
         }
-        return response.json();
+
+        let questionGroups: QuestionGroup[] = response.json();
+        questionGroups.forEach(questionGroup => {
+            questionGroup.questionList.forEach(question => {
+                question.answers = [];
+                question.possibleAnswers.forEach(possibleAnswer => {
+                    question.answers.push({
+                        answer: possibleAnswer,
+                        selected: false,
+                    });
+                });
+            });
+        });
+        return questionGroups;
     }
 
     private handleError(error: any) {
         let errorMessage = error.message || 'Server error';
         console.error(errorMessage); // log to console instead
         return Observable.throw(errorMessage);
+    }
+
+    submitAnswers(invitationCode: string, questionGroups: QuestionGroup[]) {
+        let body = {
+            invitationCode: invitationCode,
+            answers: questionGroups,
+        };
+
+        this.http.post(this.apiEndPoint + '/save-answers', body)
+            .toPromise()
+            .then(res => res.json().data)
+            .catch(this.handleError);
     }
 }

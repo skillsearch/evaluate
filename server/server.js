@@ -55,6 +55,15 @@ app.post("/api/invite", (req, res) => {
     res.send(base64Emails);
 });
 
+app.post('/api/save-answers', function (req, res) {
+    let { invitationCode, answers } = req.body;
+    let joinedEmails = Buffer.from(invitationCode, 'base64').toString();
+    let emails = joinedEmails.split('/');
+    let recruiterEmail = emails[0];
+    let candidateEmail = emails[1];
+    console.log(recruiterEmail, candidateEmail, answers);
+});
+
 // For all GET requests, send back index.html so that Angular's PathLocationStrategy can be used.
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../dist/index.html'));

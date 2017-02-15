@@ -1,7 +1,13 @@
+export interface Answer {
+    answer: string | number;
+    selected: boolean;
+}
+
 export interface Question {
     readonly codeSnippet?: string;
     readonly correctAnswer?: string | number;
     readonly possibleAnswers: (string | number)[];
+    answers?: Answer[];
     readonly questionText: string;
 }
 
