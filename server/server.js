@@ -62,6 +62,7 @@ app.post('/api/save-answers', function (req, res) {
     let recruiterEmail = emails[0];
     let candidateEmail = emails[1];
     console.log(recruiterEmail, candidateEmail, answers);
+    res.send({recruiterEmail, candidateEmail, answers});
 });
 
 // For all GET requests, send back index.html so that Angular's PathLocationStrategy can be used.

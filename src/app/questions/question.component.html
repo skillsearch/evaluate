@@ -1,5 +1,5 @@
 <ul class="list-unstyled">
-    <li *ngFor="let questionGroup of questionGroups">
+    <li *ngFor="let questionGroup of questionGroups; let idx=index">
         <h3 style="margin-top: 1em;">{{questionGroup.questionType | uppercase}}</h3>
         <ul>
             <li *ngFor="let question of questionGroup.questionList">
@@ -11,9 +11,8 @@
                 <ul class="list-unstyled">
                     <li *ngFor="let answer of question.answers">
                         <label>
-                                <input type="checkbox" [(ngModel)]="answer.selected" >
-                                &nbsp;&nbsp;{{answer.answer}}
-                            </label>
+                            <input type="radio" [checked]="answer.selected" [name]="answer.groupName">&nbsp;&nbsp;{{answer.answer}}
+                        </label>
                     </li>
                 </ul>
             </li>

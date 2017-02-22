@@ -13,7 +13,7 @@ export class CandidateComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-    // eGZkeGZnZHhmQHNkc2ZyZmcuZmhmL2RoZnJoZnJqaGZnamhAZHZuaGZnaGZnaC5maA==
+    // dmxhZEBsaXZlLmNhL2FuZHJleUBsaXZlLmNh
     let pattern = '^[a-zA-Z0-9+/]+={0,2}$';
     this.invitationCode = new FormControl('', [Validators.required, Validators.pattern(pattern)]);
     this.invitationCodeForm = new FormGroup({
@@ -28,8 +28,7 @@ export class CandidateComponent implements OnInit {
   goToQuestions(formValues) {
     if (this.invitationCodeForm.valid || true) {
       console.log(formValues.invitationCode);
-      this.router.navigate(['/questions', formValues.invitationCode], );  
+      this.router.navigate(['/questions', formValues.invitationCode]);  
     }
   }
-
 }

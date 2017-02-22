@@ -29,7 +29,6 @@ export class RecruiterComponent implements OnInit {
     }
 
     onInvite(inviteFormValue: any):void {
-        console.log(inviteFormValue);
         this.base64Emails = null;
         this.recruiterService.inviteCandidate(inviteFormValue)
             .subscribe(
@@ -41,7 +40,6 @@ export class RecruiterComponent implements OnInit {
                 err => console.log(err), //catch
                 () => console.log('Candidate Email Post Complete')//finally
             );
-        //this.router.navigateByUrl('/home');
     } 
 
     onValidate(control: FormControl){

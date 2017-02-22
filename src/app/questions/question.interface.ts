@@ -1,6 +1,7 @@
 export interface Answer {
     answer: string | number;
     selected: boolean;
+    groupName: string;
 }
 
 export interface Question {

@@ -23,7 +23,7 @@ export class RecruiterService {
         
         return this.http
             .post(url, body, options)
-            .map(data=>{ 
+            .map(data=>{
                 this.invitationHash = data["_body"]; 
                 return this.invitationHash; 
             });

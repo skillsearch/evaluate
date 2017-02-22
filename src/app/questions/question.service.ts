@@ -1,15 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { QuestionGroup, AllowedQuestionTypes } from './question.interface';
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, RequestOptionsArgs } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
-
-export const QuestionTypes: AllowedQuestionTypes = {
-    js: 'js',
-    sql: 'sql',
-    general: 'general',
-};
 
 @Injectable()
 export class QuestionService {
@@ -31,13 +25,15 @@ export class QuestionService {
         }
 
         let questionGroups: QuestionGroup[] = response.json();
-        questionGroups.forEach(questionGroup => {
-            questionGroup.questionList.forEach(question => {
+
+        questionGroups.forEach(questionGroup => {            
+            questionGroup.questionList.forEach((question, index) => {
                 question.answers = [];
                 question.possibleAnswers.forEach(possibleAnswer => {
                     question.answers.push({
                         answer: possibleAnswer,
                         selected: false,
+                        groupName: `${questionGroup.questionType}${index}`
                     });
                 });
             });
@@ -51,15 +47,24 @@ export class QuestionService {
         return Observable.throw(errorMessage);
     }
 
-    submitAnswers(invitationCode: string, questionGroups: QuestionGroup[]) {
-        let body = {
+    submitAnswers(invitationCode: string, questionGroups: QuestionGroup[]): Observable<any> {
+
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        let url:string = this.apiEndPoint;
+        let body = JSON.stringify({
             invitationCode: invitationCode,
             answers: questionGroups,
-        };
+        });        
+        let options:RequestOptionsArgs = { headers:headers };
 
-        this.http.post(this.apiEndPoint + '/save-answers', body)
-            .toPromise()
-            .then(res => res.json().data)
+        return this.http
+        .post(this.apiEndPoint + '/save-answers', body, options)
+            .map(data=>{
+                return data.json(); 
+            })
             .catch(this.handleError);
+            
     }
 }
